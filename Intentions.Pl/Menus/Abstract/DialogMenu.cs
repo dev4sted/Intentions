@@ -2,17 +2,15 @@
 
 internal abstract class DialogMenu<TAnswer>
 {
-    private bool isClosed = false;
-
     public void Start()
     {
+        bool isClosed = false;
+
         while (!isClosed)
-            ProcessAnswer(Ask());
+            isClosed = ProcessAnswer(Ask());
     }
 
     protected abstract TAnswer Ask();
 
-    protected abstract void ProcessAnswer(TAnswer answer);
-
-    public void Stop() => isClosed = true;
+    protected abstract bool ProcessAnswer(TAnswer answer);
 }
